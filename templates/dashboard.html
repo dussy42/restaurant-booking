@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/8c12befb35.js" crossorigin="anonymous"></script>
+    <style>
+        body{
+            display: flex;
+            width: 100vw;
+            box-sizing: border-box;
+            gap:10px;
+
+        }
+        .sec1{
+            width:200px;
+            box-sizing: border-box;
+            height:100vh;
+            background-color: rgb(246, 248, 249);
+            padding: 5px;
+
+        }
+        .sec2{
+            width: calc(100% - 250px);
+            box-sizing: border-box;
+            max-width: 1000px;
+            background-color: rgb(245, 245, 246);
+            padding: 0px 10px;
+            box-sizing: border-box;
+            
+        }
+        button{
+            border: 0px;
+        }
+
+        .logo{
+            padding-top: 5px;
+            padding-bottom: 20px;
+            width: 100%;
+            font-weight: bold;
+            text-align: center;
+
+        }
+        .menus{
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            
+            width: 100%;
+        }
+
+        .menus button{
+            width: 100%;
+            height: 40px;
+            padding: 5px;
+            text-align: start;
+            text-transform: capitalize;
+
+
+        }
+        .menus button:hover{
+            background-color: rgb(55, 14, 189);
+            color: white;
+            border-right: 5px solid rgb(207, 9, 9);
+        }
+
+        .reservationlisthead ,.reservationlist{
+            /* min-width: 100%; */
+            width: fit-content;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            
+            padding-top: 10px;
+
+        }
+
+      
+
+        .reservationlisthead div ,  .reservationlist div{
+           
+            width: 100px ;
+            
+        }
+        .reservationlisthead div{
+            font-weight: bold;
+        }
+        .upcoprev{
+            width: 100%;
+            overflow-x: scroll;
+           
+            /* overflow: hidden; */
+        }
+
+        .viewresbtn{
+            background-color: orangered;
+            padding: 5px 10px;
+            color: white;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body class="w-full min-h-[100vh] ">
+   
+<section class="sec1">
+    <div class="logo">LOGO</div>
+    <div class="menus">
+        <button>dashbaord</button>
+        <button>about us</button>
+        <button>contact us</button>
+        <button>log out</button>
+    </div>
+
+</section>
+<section class="sec2">
+    <h1 style="font-weight: bold; padding-top:5px ;">Dashbaord</h1>
+    <section style="   box-sizing: border-box; padding: 5px; background-color: orangered; height: 150px;width: 100%; border-radius: 5px; color: white;">
+        <div>welcome ,</div>
+       <div style="font-weight: bold; padding: 10px 0px; font-size: 20px;"> princewill asotibe </div> 
+    </section>
+    <section style="width: 100%; padding: 20px 0px;   box-sizing: border-box;">
+        <h1 style="font-weight: bold;">Your reservations</h1>
+        <!-- <div style="text-align:center;padding: 20px 0px;">No reservations</div> -->
+        <div style="     box-sizing: border-box;min-height: 200px; width: 100% ; background-color: rgb(240, 239, 247); padding: 10px; margin: 10px 0px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-weight: bold; font-size: 20px ;">Rooms</span>
+                <span> <div style="font-weight: bold; font-size: 45px; color: orangered;">1000</div><div> reservations</div> </span>
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <span style="font-weight: bold; font-size: 20px ;">Table</span>
+                <span> <div style="font-weight: bold; font-size: 45px; color: orangered;">1000</div><div> reservations</div> </span>
+            </div>
+            
+        </div>
+        <button  class="viewresbtn">View your reservations</button>
+    </section>
+    <section style="width: 100%; padding: 20px 0px;">
+        <h1 style="font-weight: bold;">Upcoming reservations</h1>
+        <div style="text-align:center;padding: 20px 0px;">No reservations</div>
+        <div  class="upcoprev">
+            <div class="reservationlisthead">
+                <div class="headtype">
+                    Type
+                    
+                </div>
+                <div class="headguest">
+                    Guest
+                    
+                </div>
+                <div class="headdate">
+                    Date
+                    
+                </div>
+                <div class="headreserveno">
+                    No of unit
+                    
+                </div>
+                <div class="headreserveno">
+                   Id
+                    
+                </div>
+            </div>
+            <div class="revlist" >
+                <div class="reservationlist">
+                    <div class="type">
+                        Type
+                        
+                    </div>
+                    <div class="guest">
+                        Guest
+                        
+                    </div>
+                    <div class="date">
+                        Date
+                        
+                    </div>
+                    <div class="reserveno">
+                        No of unit
+                        
+                    </div>
+                    <div class="reserveno">
+                       Id
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+</section>
+    
+</body>
+</html>
