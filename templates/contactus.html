@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style >
+        *{
+            box-sizing: border-box;
+        }
+
+        .contactus{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            gap: 10px;
+            padding: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+        button{
+            border: 0px;
+            outline: 0px;
+        }
+
+    </style>
+</head>
+<body  style="width: 100%; height: 100vh; margin: 0px;">
+    <div style="width: 100% ; background-color: rgb(60,3,44);">
+
+        {% include 'nav.html' %}
+    </div>
+    <div class="contactus">
+       
+      
+        <h1>Contact us</h1>
+        <p style="font-weight: bold;">Talk to amember of our team  for submit using our email</p>
+        
+            <div> email: asotibeprincewill123@gmail.com</div>
+            <div> Number: 08160101820</div>
+       <button style="background-color: navy; color: white; padding:5px 20px; margin: 5px; border-radius: 6px;">Go to email</button>
+
+
+
+    </div>
+    
+    
+    
+    
+    <div  style="position: absolute; bottom: 0px; width: 100%;">
+
+        {% include 'footer.html' %}
+    </div>
+</body>
+</html>

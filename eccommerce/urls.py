@@ -24,6 +24,9 @@ urlpatterns = [
     path("account/",include("allauth.urls")),
     path("",views.index,name="home"),
     path("product",views.product,name="product"),
-    path("cart",views.cart,name="cart"),
+    path("reservations",views.reservations,name="reservations"),
     path("list",views.productlist,name="productlist"),
+    path("contactus",views.contactus,name="contactus"),
+    path("aboutus",views.contactus,name="aboutus"),
+    path("book",views.book,name="book"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

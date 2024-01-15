@@ -1,23 +1,104 @@
-<nav class="relative text-white flex h-[60px] justify-between w-full items-center p-5">
-    <div class="logo">LOGO</div>
-    <div class="flex-col md:flex-row absolute p-5 md:p-0 top-0 left-0 md:static bg-black md:bg-transparent gap-[10px] md:gap-[100px] flex h-[100vh] md:h-full md:justify-between  md:items-center">
-        <div class=" flex-col  md:flex-row  gap-[50px]  flex md:h-full md:justify-between md:items-center">
 
-            <a>about us</a>
-            <a>contact us</a>
+<style>
+
+    .nav{
+        position: relative;
+        color: white;
+        display: flex;
+        height: 60px; 
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        padding: 7px;
+        
+    }
+    button{
+            border: 0px;
+            outline: 0px;
+        }
+
+    .navwrap{
+        display: flex;
+        position : absolute;
+        flex-direction: column;
+        padding: 10px;
+        top: 0px;
+        left: 0px;
+        background-color:black ;
+        gap: 10px;
+        height: 100vh;
+
+
+        
+    }
+
+    .navcon{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+    .navbook{
+        background-color: orangered;
+        height: 40px;
+        border-radius: 10px;
+        padding: 0px 10px;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+
+  
+
+    @media (min-width: 640px) { 
+
+    }
+
+    @media (min-width: 768px) { 
+        .navwrap{
+            flex-direction: row;
+            padding: 0px;
+            position: static;
+            background: none;
+            height: 100%;
+            gap: 100px;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .navcon{
+            flex-direction: row;
+            height: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+
+     }
+
+
+</style>
+<nav class="nav ">
+    <div class="logo">LOGO</div>
+    <!-- relative text-white flex h-[60px] justify-between w-full items-center p-5 -->
+    <div class="navwrap ">
+        <div class="navcon ">
+
+            <a href="{% url 'aboutus' %}" >about us</a>
+            <a href="{% url 'contactus' %}">contact us</a>
             <a>signup</a>
             <a>login</a>
             <a>logout</a>
         </div>
             <div>
 
-                <button class="bg-[orangered] h-[40px] rounded-md px-5">
+                <button class="navbook ">
                     <a>book reservations</a>
                 </button>
                 <!-- <button class="rounded-md px-5"> -->
                     <!-- </button> -->
                 </div>
             </div>
-            <i class="md:hidden visible fa-solid fa-bars text-white "></i>
+            <i class="navmenubtn md:hidden visible fa-solid fa-bars text-white "></i>
 
 </nav>
