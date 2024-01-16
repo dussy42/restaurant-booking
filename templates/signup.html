@@ -8,6 +8,15 @@
         *{
             box-sizing: border-box;
         }
+        .info{
+            color:"green"
+        }
+        .error{
+            color:"red"
+        }
+        .warn{
+            color:"yellow"
+        }
 
         .l{
             width: 100%;
@@ -52,15 +61,25 @@
       
         <h1>Contact us</h1>
         <form style="width: 100%; max-width: 400px; margin-bottom: 100px;">
-            <p class="message"></p>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             
             <div>
+                <label for="username" >Room</label>
+                <input required id="username" name="username" type="text"/>
+            </div>
+            <div>
                 <label for="email" >Room</label>
-                <input id="email" name="email" type="nuemail"/>
+                <input required id="email" name="email" type="email"/>
             </div>
             <div>
                 <label for="password">Date</label>
-                <input name="password" id="password" type="nupassword"/>
+                <input required name="password" id="password" type="password"/>
             </div>
             <button class="bookresbtn" style="background-color: navy; color: white; padding:5px 20px; margin: 5px; border-radius: 6px;">sign up</button>
             <a>login</a>

@@ -23,13 +23,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-AUTHENTICATION_BACKENDS =(
-    "django.contrib.auth.backends.ModelBackend"
-    "allauth.account.auth_backends.AuthenticationBackend"
-)
+AUTHENTICATION_BACKENDS =[
+    "django.contrib.auth.backends.ModelBackend",
+    # "allauth.account.auth_backends.AuthenticationBackend",
+    'eccommerce.backend.EmailBackend'
+]
 SECRET_KEY = 'django-insecure-!m4k7cpy&e=g@q0s$66vlgi2v$uurki9!!68hh#oxn9ev!^1$t'
 SITE_ID = 1 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your_email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_email_password'
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -54,10 +61,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-      
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    "base.apps.BaseConfig",
+    "rest_framework"
+    
+   
+  
 ]
 
 MIDDLEWARE = [
@@ -107,6 +115,8 @@ DATABASES = {
     }
 }
 
+# AUTHENTICATION_BACKENDS = ['users.backends.EmailBackend']
+AUTH_USER_MODEL ="base.CustomUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

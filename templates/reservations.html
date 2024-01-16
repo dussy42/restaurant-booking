@@ -86,16 +86,23 @@
               
             </div>
             <div class="refbodycon">
+                {% for val in res  %}
                 <div class="refbody">
-                    <p class="refid">refid</p>
-                    <p class="reftime">time</p>
-                    <p class="guest">guest</p>
-                    <p class="room">room</p>
-                    <p class="table">table</p>
+                    <p class="refid">{{val.resId }}</p>
+                    <p class="reftime">{{ val.date }} v</p>
+                    <p class="guest">{{val.guest}}</p>
+                    <p class="room">{{val.room}}</p>
+                    <p class="table">{{val.table}}</p>
                     
-                    <p class="delete" >delete</p>
+                    <p class="delete"  >
+                        <a href="/res/delete/{{val.resId}}">
+
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </p>
 
                 </div>
+                {% endif %}
             </div>
         </div>
 

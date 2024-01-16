@@ -20,7 +20,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("",include("base.urls")),
-    
-] 
+
+    # path("account/",include("allauth.urls")),
+    path("",views.index,name="home"),
+    path("login",views.login,name="login"),
+    path("signup",views.signup,name="signup"),
+    path("reservations",views.reservations,name="reservations"),
+    path("contactus",views.contactus,name="contactus"),
+    path("aboutus",views.contactus,name="aboutus"),
+    path("book",views.book,name="book"),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -33,6 +33,7 @@
             height: 50px;
 
         }
+        
 
         form div{
             width: 100%;
@@ -40,9 +41,19 @@
 
         }
 
+        .info{
+            color:"green"
+        }
+        .error{
+            color:"red"
+        }
+        .warn{
+            color:"yellow"
+        }
+
     </style>
 </head>
-<body  style="width: 100%; height: 100vh; margin: 0px;">
+<body  style="width: 100%; height: 100vh; margin: 0px; display: flex; flex-direction: column;">
     <div style="width: 100% ; background-color: rgb(60,3,44);">
 
         {% include 'nav.html' %}
@@ -50,30 +61,36 @@
     <div class="l">
        
       
-        <h1>Contact us</h1>
-        <form style="width: 100%; max-width: 400px; margin-bottom: 100px;">
-            <p class="message"></p>
+        <h1>Login</h1>
+        <form method="post" style="width: 100%; max-width: 400px; margin-bottom: 100px;" >
+            {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
             
             <div>
-                <label for="email" >Room</label>
-                <input id="email" name="email" type="nuemail"/>
+                <label for="email" >Email</label>
+                <input id="email" name="email" type="email"/>
             </div>
             <div>
-                <label for="password">Date</label>
-                <input name="password" id="password" type="nupassword"/>
+                <label required for="password">Password</label>
+                <input required name="password" id="password" type="password"/>
             </div>
-            <button class="bookresbtn" style="background-color: navy; color: white; padding:5px 20px; margin: 5px; border-radius: 6px;">login</button>
-            <a>signup</a>
-            <a>forgotpassword</a>
+            <button class="bookresbtn" type="submit" style="background-color: navy; color: white; padding:5px 20px; margin: 5px; border-radius: 6px;">login</button>
+            <a style="color: black;" href="/signup" >signup</a>
+            <a style="color: black;" href="/passwordotp">forgotpassword</a>
         </form>
 
 
 
     </div>
     <script>
-        form.addEventListener("submit",(e)=>{
-            e.preventDefault()
-        })
+        // form.addEventListener("submit",(e)=>{
+        //     e.preventDefault()
+        // })
     </script>
     
     
