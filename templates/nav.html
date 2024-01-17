@@ -119,7 +119,7 @@
     <div class="logo">
         <a href="/">
 
-            LOGO
+            OASIS
         </a>
     </div>
     <!-- relative text-white flex h-[60px] justify-between w-full items-center p-5 -->
@@ -127,7 +127,7 @@
         <div class="navcon ">
             <div class="logo2" ><a href="/">
 
-                LOGO
+                OASIS
             </a></div>
 
 
@@ -170,3 +170,8 @@
             </script>
 
 </nav>
+{% if user.is_authenticated %}
+<hr/>
+
+<div style="width: 100%; color: white; padding: 5px 5px;"> You are loggedin as {{ user.username }}</div>
+{% endif %}

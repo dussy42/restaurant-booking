@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+
+load_dotenv()
 TEMPLATE_DEBUG = True
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,13 +39,14 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_PORT = 465
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'www.mysite.com']
 
 EMAIL_USE_TLS = False 
 EMAIL_USE_SSL = True
-EMAIL_HOST_USER = 'princewillasotibe234@gmail.com'
-# EMAIL_HOST_PASSWORD = 'iflv ihnh tgrw laxm'
-EMAIL_HOST_PASSWORD = 'ipvk jovh zuvc wdae'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
 
 
 # ACCOUNT_AUTHENTICATION_METHOD = "username_email"
