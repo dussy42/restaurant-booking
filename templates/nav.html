@@ -18,9 +18,10 @@
         }
 
     .navwrap{
-        display: flex;
+        display: none;
         position : absolute;
         flex-direction: column;
+       
         padding: 10px;
         top: 0px;
         left: 0px;
@@ -59,13 +60,34 @@
         color: white;
     }
 
+    .navmenubtn{
+        display: block;
+        color: white;
+    }
+    .logo2{
+        margin: 20px 0px;
+        display: block;
+    }
+
   
 
     @media (min-width: 640px) { 
 
     }
 
+    @media (max-width: 768px) { 
+        .navwrapshow{
+            display: flex;
+        }
+    }
     @media (min-width: 768px) { 
+        .logo2{
+       
+        display: none;
+    }
+    .navmenubtn{
+        display: none;
+    }
         .navwrap{
             flex-direction: row;
             padding: 0px;
@@ -75,8 +97,11 @@
             gap: 100px;
             justify-content: center;
             align-items: center;
+            display: flex;
 
         }
+
+      
         .navcon{
             flex-direction: row;
             height: 100%;
@@ -89,31 +114,59 @@
 
 
 </style>
+    <script src="https://kit.fontawesome.com/8c12befb35.js" crossorigin="anonymous"></script>
 <nav class="nav ">
-    <div class="logo">LOGO</div>
+    <div class="logo">
+        <a href="/">
+
+            LOGO
+        </a>
+    </div>
     <!-- relative text-white flex h-[60px] justify-between w-full items-center p-5 -->
     <div class="navwrap ">
         <div class="navcon ">
+            <div class="logo2" ><a href="/">
+
+                LOGO
+            </a></div>
+
 
             <a href="{% url 'aboutus' %}" >about us</a>
             <a href="{% url 'contactus' %}">contact us</a>
-            {% if not  user.is_authenticated %}
-            <a>signup</a>
-            <a>login</a>
+            {% if  user.is_authenticated %}
+               <a href="/reservations">my reservation</a>
+               <a href="/logout">logout</a>
+           
             
             {% else %}
-            <a>logout</a>
+            <a href="/signup">signup</a>
+            <a href="/login">login</a>
+         
             {% endif %}
         </div>
             <div>
 
                 <button class="navbook ">
-                    <a>book reservations</a>
+                    <a href="/book">book reservations</a>
                 </button>
                 <!-- <button class="rounded-md px-5"> -->
                     <!-- </button> -->
                 </div>
             </div>
-            <i class="navmenubtn md:hidden visible fa-solid fa-bars text-white "></i>
+            <div class="navmenubtn">
+
+                <i class="  fa-solid fa-bars"></i>
+            </div>
+            <script>
+
+                const navbtn = document.querySelector(".navmenubtn")
+                const navwrap = document.querySelector(".navwrap")
+
+                navbtn.addEventListener("click",e=>{
+                    navwrap.classList.toggle("navwrapshow")
+
+                })
+
+            </script>
 
 </nav>

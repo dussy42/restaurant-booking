@@ -35,12 +35,13 @@ class DummyModel(models.Model):
 
 class  RESERVATIONS(models.Model):
 
-    date:models.DateTimeField() 
-    resId:models.CharField()
-    room:models.IntegerField()
-    guest:models.IntegerField()
-    table:models.IntegerField()
-    email:models.EmailField()
+    resId=models.CharField(max_length=200,unique=True)
+    date=models.CharField(max_length=200,) 
+    room=models.IntegerField()
+    guest=models.IntegerField()
+    table=models.IntegerField()
+    email=models.EmailField()
+
     
 
     
@@ -49,8 +50,8 @@ class  RESERVATIONS(models.Model):
 
 
 class OTP(models.Model):
-    email:models.EmailField()
-    otp:models.CharField()
+    email=models.EmailField()
+    otp=models.CharField(max_length=200,)
     
 
 

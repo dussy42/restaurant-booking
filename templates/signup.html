@@ -59,8 +59,8 @@
     <div class="l">
        
       
-        <h1>Contact us</h1>
-        <form style="width: 100%; max-width: 400px; margin-bottom: 100px;">
+        <h1>sign up</h1>
+        <form style="width: 100%; max-width: 400px; margin-bottom: 100px;" method="post">
             {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -70,15 +70,15 @@
             {% endif %}
             
             <div>
-                <label for="username" >Room</label>
+                <label for="username" >username</label>
                 <input required id="username" name="username" type="text"/>
             </div>
             <div>
-                <label for="email" >Room</label>
+                <label for="email" >email</label>
                 <input required id="email" name="email" type="email"/>
             </div>
             <div>
-                <label for="password">Date</label>
+                <label for="password">Password</label>
                 <input required name="password" id="password" type="password"/>
             </div>
             <button class="bookresbtn" style="background-color: navy; color: white; padding:5px 20px; margin: 5px; border-radius: 6px;">sign up</button>
@@ -89,9 +89,9 @@
 
     </div>
     <script>
-        form.addEventListener("submit",(e)=>{
-            e.preventDefault()
-        })
+        // form.addEventListener("submit",(e)=>{
+        //     e.preventDefault()
+        // })
     </script>
     
     

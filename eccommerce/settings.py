@@ -33,14 +33,23 @@ SITE_ID = 1
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'your_email@gmail.com'
-EMAIL_HOST_PASSWORD = 'your_email_password'
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_REQUIRED = True
+
+EMAIL_PORT = 465
+
+
+EMAIL_USE_TLS = False 
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'princewillasotibe234@gmail.com'
+# EMAIL_HOST_PASSWORD = 'iflv ihnh tgrw laxm'
+EMAIL_HOST_PASSWORD = 'ipvk jovh zuvc wdae'
+
+
+# ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+# ACCOUNT_EMAIL_REQUIRED = True
+
 # ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_USERNAME_MIN_LENGTH =4
+
+# ACCOUNT_USERNAME_MIN_LENGTH =4
 # ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE=True
 LOGIN_URL=""
 LOGIN_REDIRECT_URL="/"
@@ -62,7 +71,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "base.apps.BaseConfig",
-    "rest_framework"
+    "rest_framework",
+    
     
    
   

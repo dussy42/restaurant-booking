@@ -49,6 +49,7 @@
         }
         .refhead ,.refbody{
             width: fit-content;
+            gap: 10px;
 
             display: flex;
             margin-top: 10px;
@@ -59,7 +60,9 @@
         .refhead p,.refbody p{
 
             width: 100px;
-            overflow: hidden;
+            overflow: scroll;
+            
+            text-wrap: nowrap;
 
         } 
 
@@ -88,21 +91,21 @@
             <div class="refbodycon">
                 {% for val in res  %}
                 <div class="refbody">
-                    <p class="refid">{{val.resId }}</p>
+                    <p class="refid">{{ val.resId }}</p>
                     <p class="reftime">{{ val.date }} v</p>
-                    <p class="guest">{{val.guest}}</p>
-                    <p class="room">{{val.room}}</p>
-                    <p class="table">{{val.table}}</p>
+                    <p class="guest">{{ val.guest}}</p>
+                    <p class="room">{{ val.room }}</p>
+                    <p class="table">{{ val.table }}</p>
                     
-                    <p class="delete"  >
-                        <a href="/res/delete/{{val.resId}}">
+                    <p data-refid="{{ val.resId }}" class="delete"  >
+                        <!-- <a href=""> -->
 
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
+                            <i  style="color: red;" class="fa-solid fa-trash del"></i>
+                        <!-- </a> -->
                     </p>
 
                 </div>
-                {% endif %}
+                {% endfor %}
             </div>
         </div>
 
@@ -110,6 +113,27 @@
 
     </div>
     <script>
+        let del = document.querySelectorAll(".delete")
+        del.forEach(e=>{
+            e.addEventListener("click",e=>{
+                console.log(e.currentTarget)
+                try{
+
+                    fetch(`/resdel/${e.currentTarget.dataset.refid}`,{
+                        credentials:"include"
+                    })
+                    parent2 = e.currentTarget.parentElement
+                    parent1 = parent2.parentElement
+                    parent1.removeChild(parent2)
+                }
+                catch(e){
+                    console.log(e)
+
+                }
+
+
+            })
+        })
         // form.addEventListener("submit",(e)=>{
         //     e.preventDefault()
         // })

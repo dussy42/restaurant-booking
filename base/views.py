@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required ,permission_required
 from .permissions import perff
 from django.contrib.auth import authenticate ,login,logout
 from .models import CustomUser ,OTP ,RESERVATIONS
+from .serialisers import resser ,otpser
+# from ..eccommerce.backend import EmailBackend
 from .forms import signupdata_form , logindata_form ,passwordotp_form ,passwordreset_form ,reservedata_form
 # import 
 
@@ -25,7 +27,14 @@ def aboutus (req):
 def reservations (req):
   
   res = RESERVATIONS.objects.filter(email=req.user.email)
-  return   render(req,"reservations.html",{res :res})
+  ress = CustomUser.objects.get(email=req.user.email)
+  data =  resser(res,many=True)
+  # print(res,ress,data.data)
+  for val in data.data:
+      print(val["email"],"Asa")
+  print([dict(_) for  _  in data.data])
+  # print(res)
+  return   render(req,"reservations.html",{"res" :data.data})
 
 
 
@@ -33,20 +42,26 @@ def reservations (req):
 def contactus (req):
   return   render(req,"contactus.html")
 
-@api_view(["GET","POST"])
 @login_required(login_url="/login")
+@api_view(["GET","POST"])
 def book (req):
+  print("kdkdkddk")
   if(req.method=="POST"):
-    data = reservedata_form(req.data)
+    data = reservedata_form(req.POST)
+    print(req.POST,data.is_valid())
     if(data.is_valid()):
         id = randomString(12)
-        RESERVATIONS.objects.create(req.data,id=id)
-        messages.info(req, f"""resevrtions booked  
-                      reservation id {id}
-                      """)
+        i = req.POST
+        print(id)
+        print(i["guest"])
+        RESERVATIONS.objects.create(guest=i["guest"],table= i["table"],room=i["room"], date=i["date"], resId=id,email=req.user.email)
+        # messages.info(req, f"""resevrtions booked  
+        #               reservation id {id}
+        #               """)
 
     
-        return   render(req,"message.html",success="/")
+        # return   render(req,"message.html",success="/")
+        return   redirect("/reservations")
     messages.info(req, f"""
   error in booking reservations
                       """)
@@ -63,8 +78,10 @@ def book (req):
 @api_view(["GET"])
 @login_required(login_url="/login")
 # @permission_required("user")
-def deleteres (req):
-  RESERVATIONS.objects.delete(id=req.params.id)
+def deleteres (req,id):
+  print(id)
+  data  =RESERVATIONS.objects.get(resId=id)
+  data.delete()
 
   return   render(req,"reservations.html")
 
@@ -76,12 +93,16 @@ def deleteres (req):
 
 
 
-
-
+@api_view(["POST","GET"])
+@login_required(login_url="/login")
+def logout_(req):
+    logout(req)
+    return redirect("/")
+    
 
 
 @api_view(["POST","GET"])
-def login(req):
+def login_(req):
     print(req.method,"Sss")
     if req.method=="POST":
   
@@ -100,7 +121,7 @@ def login(req):
           
                   
                   
-                  login(req,user_)
+                  login(req,user_,backend="eccommerce.backend.EmailBackend")
           
 
                   return redirect("/")
@@ -118,91 +139,115 @@ def login(req):
           messages.error(req, 'invalid data')
           return render (req,"login.html")
     else:
+          if req.user.is_authenticated:
+           return redirect("/")
           
           return render (req,"login.html")
     
 
 @api_view(["POST","GET"])
-def otppassword(request):
+def passwordotp(request):
     if(request.method=="POST"):
   
       
-      dataser = passwordreset_form(request.data)
+      dataser = passwordreset_form(request.POST)
       id = randomString(4)
       
-      if (dataser.isValid()):
-
-          user_ = authenticate(request,email =request.data["email"])
-          if(user_ is not None):
-                send_mail("otp", f"""
-  <div>
-              <h1 style="color:blue">OTP code</h1>
-              <p>copy the code below to proceed with password reset</p>
+      if (dataser.is_valid()):
           
-              <p>do not share this code with anybody</p>
-          
-              <p>OTP  {id}</p>
-              <p>Thanks</p>
-              <p>Technical Team</p>
-          </div>
+          l =f"""
+            <div>
+                        <h1 style="color:blue">OTP code</h1>
+                        <p>copy the code below to proceed with password reset</p>
+                    
+                        <p>do not share this code with anybody</p>
+                    
+                        <p>OTP  </p>
+                        <p>Thanks</p>
+                        <p>Technical Team</p>
+                    </div>
 
-                  """, "dussy@gmail.com", [request.data["email"]])
+                            """
+          user_ = CustomUser.objects.get(email =request.POST["email"])
+          if(user_ ):
+                print(user_,"SDsd")
+                send_mail(subject="otp", message="otp",html_message=f"""
+            <div>
+                        <h1 style="color:blue">OTP code</h1>
+                        <p>copy the code below to proceed with password reset</p>
+                    
+                        <p>do not share this code with anybody</p>
+                    
+                        <p>OTP {id} </p>
+                        <p>Thanks</p>
+                        <p>Technical Team</p>
+                    </div>
+
+                            """, from_email="princewillasotibe234@gmail.com",recipient_list= [request.POST["email"]])
                 
                 
-                OTP.objects.create(otp=id,email=request.data["email"])
+                
+                OTP.objects.create(otp=id,email=request.POST["email"])
+                return redirect("/passwordreset")
+                
           else:
               messages.error(request, 'invalid email')
 
 
-              return render(request,"signup.html")
+              return render(request,"passwordotp.html")
       else:
           messages.error(request, 'invalid details')
-          return render(request,"signup.html")
+          return render(request,"passwordotp.html")
     else:
-         return render(request,"otppassword.html")
+         if request.user.is_authenticated:
+          return redirect("/")
+         return render(request,"passwordotp.html")
                
        
               
     
-    messages.error(request, 'there is an error in reseting passwrod')
-    return render(request,"signup.html")
+  #   messages.error(request, 'there is an error in reseting passwrod')
+  #  return render(request,"signup.html")
 @api_view(["POST","GET"])
 def passwordreset(request):
   
     if request.method =="POST":
-      signupdataser = passwordotp_form(request.data)
+      signupdataser = passwordotp_form(request.POST)
     
       
-      if (signupdataser.isValid()):
-          data =OTP.objects.get(otp=request.data.otp)
-          if data:
+      if (signupdataser.is_valid()):
+          data_ = OTP.objects.get(otp=request.POST["otp"])
+          if data_:
+              data = otpser(data_).data
               email = data["email"]
-              user_ =CustomUser.objects.get(email=request.data["email"])
-              user_.set_password(request.data["password"])
+              user_ =CustomUser.objects.get(email=email)
+              user_.set_password(request.POST["password"])
               user_.save()
-              data.delete()
-              redirect("/login")
+              data_.delete()
+              return redirect("/login")
               
               
 
         
           else:
                 messages.error(request, 'invalid  otp')
-                return render(request,"signup.html")
+                return render(request,"passwordreset.html")
               
         
 
       
       else:
           messages.error(request, 'invalid form values')
-          return render(request,"signup.html")
+          return render(request,"passwordreset.html")
           
         
                 
       
-      messages.error(request, 'there is an error in signing up')
-      return render(request,"signup.html")
+      # messages.error(request, 'there is an error in signing up')
+      # return render(request,"passwordreset.html")
     else:
+        if request.user.is_authenticated:
+         return redirect("/")
         return render(request,"passwordreset.html")
         
 
@@ -211,22 +256,28 @@ def passwordreset(request):
 @api_view(["POST","GET"])
 def signup(request):
     if request.method=="GET":
+      if request.user.is_authenticated:
+        return redirect("/")
+    # print(request.user.is_authenticated())
       return render(request,"signup.html")
       
 
     
-    signupdataser = signupdata_form(request.data)
-    id = randomString(12)
+    print("lllbmbmb")
+    signupdataser = signupdata_form(request.POST)
     
-    if (signupdataser.isValid()):
-        user_ =CustomUser.objects.create(email=request.data["email"],id_ =id,username=request.data["username"])
+    if (signupdataser.is_valid()):
+        print("lll",request.POST)
+        user_ =CustomUser.objects.create(email=request.POST["email"],username=request.POST["username"])
        
               
-        perm = perff("org")
-        user_.user_permissions.add(perm)
-        user_.set_password(request.data["password"])
+        # perm = perff("org")
+        # user_.user_permissions.add(perm)
+        user_.set_password(request.POST["password"])
         user_.save()
-        login(request,user_)
+        print("kkk")
+        login(request,user_,backend="eccommerce.backend.EmailBackend")
+        print("kkkllll")
       
 
         return redirect("/")
@@ -234,5 +285,7 @@ def signup(request):
               
     
     messages.error(request, 'there is an error in signing up')
+  
+        
     return render(request,"signup.html")
     

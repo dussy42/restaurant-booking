@@ -51,8 +51,14 @@
        
       
         <h1>Book reservation</h1>
-        <form style="width: 100%; max-width: 400px; margin-bottom: 100px;">
-            <p class="message"></p>
+        <form style="width: 100%; max-width: 400px; margin-bottom: 100px;" method="post">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
             <div>
                 <label for="guest">guest</label>
                 <input name="guest" id="guest" type="number"/>
@@ -65,20 +71,21 @@
                 <label for="room" >Room</label>
                 <input id="room" name="room" type="number"/>
             </div>
+            {% csrf_token %}
             <div>
                 <label for="date">Date</label>
                 <input name="date" id="date" type="datetime-local"/>
             </div>
-            <button class="bookresbtn" style="background-color: navy; color: white; padding:5px 20px; margin: 5px; border-radius: 6px;">book</button>
+            <button type="submit" class="bookresbtn" style="background-color: navy; color: white; padding:5px 20px; margin: 5px; border-radius: 6px;">book</button>
         </form>
 
 
 
     </div>
     <script>
-        form.addEventListener("submit",(e)=>{
-            e.preventDefault()
-        })
+        // form.addEventListener("submit",(e)=>{
+        //     e.preventDefault()
+        // })
     </script>
     
     

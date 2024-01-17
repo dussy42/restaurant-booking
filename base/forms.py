@@ -13,10 +13,12 @@ class logindata_form(forms.Form):
 
 class reservedata_form(forms.Form):
 
- guest = forms.CharField()
- table = forms.EmailField() 
- room = forms.CharField() 
+ guest = forms.IntegerField()
+ table = forms.IntegerField() 
+ room = forms.IntegerField() 
  date = forms.DateTimeField() 
+#  csrfmiddlewaretoken=forms.CharField() 
+
 
  
 

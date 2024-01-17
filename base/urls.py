@@ -23,10 +23,14 @@ urlpatterns = [
 
     # path("account/",include("allauth.urls")),
     path("",views.index,name="home"),
-    path("login",views.login,name="login"),
+    path("login",views.login_,name="login"),
+    path("logout",views.logout_,name="logout"),
     path("signup",views.signup,name="signup"),
     path("reservations",views.reservations,name="reservations"),
     path("contactus",views.contactus,name="contactus"),
     path("aboutus",views.contactus,name="aboutus"),
     path("book",views.book,name="book"),
+    path("passwordotp",views.passwordotp,name="passwordotp"),
+    path("passwordreset",views.passwordreset,name="passwordreset"),
+    path("resdel/<id>",views.deleteres,name="resdel"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
