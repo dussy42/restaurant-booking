@@ -1,5 +1,5 @@
 # OASIS
-This project [oasis](https://discountshop-e2a697cfe5bb.herokuapp.com/) is a minimalistic site that showcases booking reservation . 
+This project [oasis](https://mave212.pythonanywhere.com/) is a minimalistic site that showcases booking reservation . 
 <!-- ![home](/assets/images/finterface.png) -->
 # User Experience (UX)
 Key information for the app
