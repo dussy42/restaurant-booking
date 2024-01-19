@@ -19,11 +19,22 @@ Users able to book for tables and rooms at the same
 Users get rervation Id after booking
 
 # Features:<br>
-Date and Time booking<br>
+Login
+![input](assets/1705656646441.png) <br>
+
+Signup
+![input](assets/1705656564950.png) <br>
+
+booking reservations
+![input](assets/1705656725812.png) <br>
+
+   Date and Time booking<br>
+   Multiple guest<br>
+
 
 booking cancelations<br>
+![input](assets/1705656799278.png) <br>
 
-Multiple guest<br>
 
 # Assumptions:<br>
 all rooms and tables are the sameand have thesame size and design
