@@ -45,6 +45,21 @@ There infinite numbers of rooms hence eliminating double booking
 
 
 
+# Responsiveness<br>
+
+screen w-1700
+![input](assets/1706248149105.png) <br>
+
+
+
+screen w-1500
+![input](assets/1706248200995.png) <br>
+
+screen w-600
+![input](1706248224114.png) <br>
+
+screen w-350
+![input](1706248249632.png) <br>
 
 
 
@@ -95,7 +110,10 @@ Open terminal
 type → heroku login
 After the login run the following commands
 heroku run python manage.py makemigrations
-heroku run python manage.py migrate ```
+heroku run python manage.py migrate ...
 
 # Credits<br>
-Full credit goes to code institute for the template provided to make this project a possiblity
+Full credit goes to code institute for the template provided to make this project a possiblityl
+
+
+
