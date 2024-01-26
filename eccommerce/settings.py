@@ -62,7 +62,7 @@ LOGIN_REDIRECT_URL="/"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*","https://reservebooking-f88a92f8cf30.herokuapp.com/"]
 
 
 # Application definition
