@@ -63,10 +63,8 @@ screen w-1500
 ![input](assets/1706248200995.png) <br>
 
 screen w-600
-![input](1706248224114.png) <br>
+![input](assets/1706248224114.png) <br>
 
-screen w-350
-![input](1706248249632.png) <br>
 
 
 
