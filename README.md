@@ -1,5 +1,5 @@
 # OASIS
-This project [oasis](https://reservebooking-f88a92f8cf30.herokuapp.com/) is a minimalistic site that showcases booking reservation . 
+This project [](https://reservebooking-f88a92f8cf30.herokuapp.com/) is a minimalistic site that showcases booking reservation . 
 <!-- ![home](/assets/images/finterface.png) -->
 # User Experience (UX)
 Key information for the app
@@ -17,6 +17,13 @@ Users able to book for tables and rooms at the same
 <br>
 
 Users get rervation Id after booking
+
+
+# ADMIN CREDENTIALS<br>
+username dussy@gmail.com <br>
+email dussy@gmail.com
+<br>
+password Admin@123
 
 # Features:<br>
 Login
