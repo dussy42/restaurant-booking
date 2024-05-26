@@ -285,7 +285,7 @@ def signup(request):
 
       
       print("lllbmbmb")
-      signupdataser = signupdata_form(request.POST)
+      signupdataser = signupdata_form(data=request.POST)
       
       if (signupdataser.is_valid()):
           print("lll",request.POST)
