@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
     last_name =None
     
     email =  models.EmailField(null=True ,blank=True,unique=True)
-    username =  models.CharField(null=True ,blank=True,unique=True)
+    username =  models.CharField(null=True ,blank=True,unique=True,max_length=200)
     def __str__(self):
         return self.email
 
@@ -43,7 +43,7 @@ class  RESERVATIONS(models.Model):
     guest=models.IntegerField()
     table=models.IntegerField()
     email=models.EmailField()
-    username=models.CharField(max_length=200,) 
+    username=models.CharField(max_length=200) 
     def __str__(self):
         return self.username
 
