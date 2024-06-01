@@ -167,10 +167,7 @@ class TestUserModel(TestCase):
 class TestRenderModel(TestCase):
     """
     Things to test:
-    - Can be create a cart with the bare minimum of fields? (name, image and userid)
-    - Does the __str__ method behave as expected?
-    
-    - Do two carts with the same title and user same id?
+    - test correctnes of page rendered
     """
 
     @classmethod
@@ -183,14 +180,7 @@ class TestRenderModel(TestCase):
             username='user123',
             password='password456'
         )
-        cls.cart = CART.objects.create(
-            name='rice',
-            image='rice.jpg',
-            price="20",
-            productid="2",
-            
-            user_id=cls.user.username,
-        )
+     
         # cls.client.force_login(cls.user)  
     def test_get_home(self):        
         """ Tests that a GET request works and renders the correct
@@ -199,23 +189,23 @@ class TestRenderModel(TestCase):
         # self.client.force_login(self.user)        
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'index.html')
+        self.assertTemplateUsed(response, 'home.html')
     def test_get_signup(self):        
         """ Tests that a GET request works and renders the correct
             template"""   
-        url = reverse("productlist")      
+        url = reverse("signup")      
         # self.client.force_login(self.user)        
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'productlist.html')
+        self.assertTemplateUsed(response, 'signup.html')
 
     def test_get_login(self):        
         """ Tests that a GET request works and renders the correct
             template"""   
-        url = reverse("cart")      
+        url = reverse("login")      
         # self.client.force_login(self.user)        
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'cart.html')
+        self.assertTemplateUsed(response, 'login.html')
       
    

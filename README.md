@@ -42,6 +42,9 @@ booking reservations
 booking cancelations<br>
 ![input](assets/1705656799278.png) <br>
 
+# SEO:<br>
+Implemented SEO on each page with unique
+
 
 # Assumptions:<br>
 all rooms and tables are the sameand have thesame size and design
