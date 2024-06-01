@@ -169,7 +169,7 @@ class TestUserModel(TestCase):
 class TestRenderModel(TestCase):
     """
     Things to test:
-    - test correctnes of page rendered
+    - test correctness of page rendered
     """
 
     @classmethod
