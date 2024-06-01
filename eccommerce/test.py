@@ -74,6 +74,8 @@ class TestReservationModel(TestCase):
 
         self.assertNotEqual(self.id, second_title.resId)
 
+
+
 class TestOtpModel(TestCase):
     """
     Things to test:
