@@ -51,7 +51,7 @@ def book (req):
       data = reservedata_form(req.POST)
 
       if(data.is_valid()):
-          id = randomString(12)
+        
           i = req.POST
         
           RESERVATIONS.objects.create(guest=i["guest"],table= i["table"],room=i["room"], date=i["date"], resId=id,email=req.user.email)
